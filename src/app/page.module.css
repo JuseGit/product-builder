@@ -1,3 +1,8 @@
+.cd-product-builder {
+  height: 100vh;
+  overflow: hidden;
+}
+
 .main {
   display: flex;
   flex-direction: column;
