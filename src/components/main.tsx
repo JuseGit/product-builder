@@ -2,6 +2,7 @@ import React, { FC } from 'react'
 import Step from './step'
 import styles from './main.module.css'
 import Models from './models'
+import Colors from './colors'
 
 const Main: FC<{}> = () => {
   return (
@@ -11,7 +12,7 @@ const Main: FC<{}> = () => {
           <Models />
         </Step>
         <Step id="step-colors" index={1}>
-          <span>Colors Step</span>
+          <Colors />
         </Step>
         <Step id="step-accessories" index={2}>
           <span>Accessories Step</span>

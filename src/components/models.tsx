@@ -9,13 +9,13 @@ import { useProductBuilderContext } from './pb-context'
 
 const modelsData = [
   {
-    productId: 'product-01',
+    productId: 'product01',
     name: 'BMW i3',
     imgURL: model01Pic,
     price: 42400,
   },
   {
-    productId: 'product-02',
+    productId: 'product02',
     name: 'BMW i8',
     imgURL: model02Pic,
     price: 140700,

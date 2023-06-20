@@ -122,3 +122,19 @@ a {
 img {
   max-width: 100%;
 }
+[data-color='white'] {
+  background-color: #fff;
+  border-radius: 50%;
+}
+[data-color='grey'] {
+  background-color: #303539;
+  border-radius: 50%;
+}
+[data-color='orange'] {
+  background-color: #cf5a16;
+  border-radius: 50%;
+}
+[data-color='perl'] {
+  background-color: #d1d1d1;
+  border-radius: 50%;
+}
