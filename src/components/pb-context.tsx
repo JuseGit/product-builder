@@ -4,7 +4,10 @@ import { createContext, useContext } from 'react'
 
 interface ProductBuilderContextTypes {
   activeTab: number
+  activeModel: string
+  visited: { [key: number]: string }
   setActiveTab: (tab: number) => void
+  setActiveModel: (model: string) => void
 }
 
 const ProductBuilderContext = createContext<ProductBuilderContextTypes | null>(

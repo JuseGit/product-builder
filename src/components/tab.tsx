@@ -1,6 +1,6 @@
 'use client'
 
-import { FC, ReactNode } from 'react'
+import { FC, MouseEvent, ReactNode } from 'react'
 import { useProductBuilderContext } from './pb-context'
 import Link from 'next/link'
 import styles from './header.module.css'
@@ -10,16 +10,26 @@ type TabType = {
   id: string
   index: number
   to: string
+  disabled: boolean
 }
 
-const Tab: FC<TabType> = ({ children, id, index, to }) => {
+const Tab: FC<TabType> = ({ children, id, index, to, disabled }) => {
   const { activeTab, setActiveTab } = useProductBuilderContext()
+
+  const handleClick = (event: MouseEvent<HTMLLIElement>) => {
+    if (disabled) {
+      event.preventDefault()
+      return
+    }
+
+    setActiveTab(index)
+  }
 
   return (
     <li
       className={activeTab !== index ? '' : styles['active']}
       key={id}
-      onClick={() => setActiveTab(index)}
+      onClick={handleClick}
     >
       <Link href={to}>{children}</Link>
     </li>
