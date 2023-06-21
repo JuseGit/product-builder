@@ -1,6 +1,7 @@
 import Image, { StaticImageData } from 'next/image'
 import { FC } from 'react'
 import styles from './models.module.css'
+import shared from './shared.module.css'
 
 type Model = {
   name: string
@@ -16,7 +17,7 @@ const Model: FC<Model> = ({ name, imgData, price }) => {
       <span className={styles.price}>{`from \$${price.toLocaleString(
         'de-DE'
       )}`}</span>
-      <div className={styles.radio}></div>
+      <div className={shared.radio}></div>
     </>
   )
 }

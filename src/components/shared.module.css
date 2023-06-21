@@ -1,0 +1,106 @@
+.radio,
+.check {
+  position: relative;
+  display: inline-block;
+  height: 30px;
+  width: 30px;
+}
+.radio::after,
+.radio::before,
+.check::after,
+.check::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: '';
+  height: 100%;
+  width: 100%;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+.radio::before,
+.check::before {
+  border: 2px solid #ededed;
+  background: #fff;
+  transition: background-color 0.3s, border-color 0.3s, -webkit-transform 0.3s;
+  transition: background-color 0.3s, transform 0.3s, border-color 0.3s;
+  transition: background-color 0.3s, transform 0.3s, border-color 0.3s,
+    -webkit-transform 0.3s;
+}
+.radio::after,
+.check::after {
+  background: url(../../public/icons/cd-icon-check.svg) no-repeat center center;
+}
+.radio::before {
+  border-radius: 50%;
+}
+.check::before {
+  border-radius: 4px;
+}
+.selected .radio::before,
+.selected .check::before {
+  background: #ffb500;
+  border-color: #ffb500;
+  transform: scale(1.5);
+  animation: cd-bounce 0.5s;
+}
+
+.selected .radio::before {
+  background: 0 0;
+  border-color: #ededed;
+  border-right-color: #ffb500;
+  transform: scale(1);
+  animation: cd-load 0.6s infinite;
+}
+.selected.loaded .radio::before {
+  background: #ffb500;
+  border-color: #ffb500;
+  transform: scale(1.5);
+  animation: cd-bounce 0.5s;
+}
+@-webkit-keyframes cd-load {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes cd-load {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.options-list > li {
+  border: 2px solid #ededed;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  transition: border-color 0.3s;
+}
+.options-list > li.selected {
+  border-color: #ffb500;
+}
+
+@media only screen and (min-width: 768px) {
+  .options-list > li {
+    margin-bottom: 2%;
+  }
+  .options-list.cd-col-2::after {
+    clear: both;
+    content: '';
+    display: block;
+  }
+  .options-list.cd-col-2 > li {
+    width: 48%;
+    float: left;
+    margin-right: 4%;
+  }
+  .options-list.cd-col-2 > li:nth-of-type(2n) {
+    margin-right: 0;
+  }
+}

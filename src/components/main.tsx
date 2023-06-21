@@ -3,6 +3,7 @@ import Step from './step'
 import styles from './main.module.css'
 import Models from './models'
 import Colors from './colors'
+import Accessories from './accessories'
 
 const Main: FC<{}> = () => {
   return (
@@ -15,7 +16,7 @@ const Main: FC<{}> = () => {
           <Colors />
         </Step>
         <Step id="step-accessories" index={2}>
-          <span>Accessories Step</span>
+          <Accessories />
         </Step>
         <Step id="step-summary" index={3}>
           <span>Summary Step</span>

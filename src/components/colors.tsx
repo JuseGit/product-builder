@@ -1,15 +1,10 @@
 'use client'
 
-import { FC, useState } from 'react'
+import { FC } from 'react'
 import { Color } from '@/types/colors.types'
 import styles from './colors.module.css'
-import product01col01Pic from '../../public/img/product01_col01.jpg'
-import product01col02Pic from '../../public/img/product01_col02.jpg'
-import product01col03Pic from '../../public/img/product01_col03.jpg'
-import product02col01Pic from '../../public/img/product02_col01.jpg'
-import product02col02Pic from '../../public/img/product02_col02.jpg'
 import { useProductBuilderContext } from '../providers/pb-context'
-import Image, { StaticImageData } from 'next/image'
+import Image from 'next/image'
 import Link from 'next/link'
 
 const colorsData: { [key: string]: Color[] } = {
@@ -59,7 +54,7 @@ const Colors: FC<{}> = () => {
           colorsData[activeModel].map((cdata) => (
             <li
               className={color.id === cdata.id ? `${styles.selected}` : ''}
-              key={cdata.id}
+              key={`${cdata.id}_preview`}
             >
               <Image
                 src={
@@ -78,25 +73,24 @@ const Colors: FC<{}> = () => {
       <ul className={styles['cd-product-customizer']}>
         {activeModel !== '' &&
           colorsData[activeModel].map((cdata) => (
-            <>
-              <li
-                className={color.id === cdata.id ? `${styles.selected}` : ''}
-                key={cdata.id}
-                onClick={() => setColor(cdata)}
+            <li
+              className={color.id === cdata.id ? `${styles.selected}` : ''}
+              key={`${cdata.id}_customizer_item`}
+              onClick={() => setColor(cdata)}
+              data-color={cdata.code}
+              data-content={`${cdata.name} - $${cdata.price.toLocaleString(
+                'de-DE'
+              )}`}
+              style={{ whiteSpace: 'normal' }}
+            >
+              <Link
+                href="#0"
                 data-color={cdata.code}
-                data-content={`${cdata.name} - $${cdata.price.toLocaleString(
-                  'de-DE'
-                )}`}
+                style={{ borderRadius: '50%' }}
               >
-                <Link
-                  href="#0"
-                  data-color={cdata.code}
-                  style={{ borderRadius: '50%' }}
-                >
-                  {cdata.name}
-                </Link>
-              </li>{' '}
-            </>
+                {cdata.name}
+              </Link>
+            </li>
           ))}
       </ul>
     </>

@@ -3,6 +3,7 @@
 import { FC } from 'react'
 import Model from './model'
 import styles from './models.module.css'
+import shared from './shared.module.css'
 import model01Pic from '../../public/img/product01_col01.jpg'
 import model02Pic from '../../public/img/product02_col01.jpg'
 import { useProductBuilderContext } from '../providers/pb-context'
@@ -27,13 +28,13 @@ const Models: FC<{}> = () => {
 
   return (
     <ul
-      className={`${styles['models-list']} ${styles['options-list']} ${styles['cd-col-2']}`}
+      className={`${styles['models-list']} ${shared['options-list']} ${shared['cd-col-2']}`}
     >
       {modelsData.map((model) => (
         <li
           className={
             activeModel === model.productId
-              ? `${styles.selected} ${styles.loaded}`
+              ? `${shared.selected} ${shared.loaded}`
               : ''
           }
           key={model.productId}
