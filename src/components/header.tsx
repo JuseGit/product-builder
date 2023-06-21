@@ -4,7 +4,7 @@ import React, { FC } from 'react'
 import Tabs from './tabs'
 import Tab from './tab'
 import styles from './header.module.css'
-import { useProductBuilderContext } from './pb-context'
+import { useProductBuilderContext } from '../providers/pb-context'
 
 const Header: FC<{}> = () => {
   const { activeModel } = useProductBuilderContext()

@@ -1,7 +1,7 @@
 'use client'
 
 import { FC, ReactNode } from 'react'
-import { useProductBuilderContext } from './pb-context'
+import { useProductBuilderContext } from '../providers/pb-context'
 import styles from './step.module.css'
 
 type StepType = {

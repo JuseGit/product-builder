@@ -8,7 +8,7 @@ import product01col02Pic from '../../public/img/product01_col02.jpg'
 import product01col03Pic from '../../public/img/product01_col03.jpg'
 import product02col01Pic from '../../public/img/product02_col01.jpg'
 import product02col02Pic from '../../public/img/product02_col02.jpg'
-import { useProductBuilderContext } from './pb-context'
+import { useProductBuilderContext } from '../providers/pb-context'
 import Image, { StaticImageData } from 'next/image'
 import Link from 'next/link'
 

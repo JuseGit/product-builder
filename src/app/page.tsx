@@ -1,6 +1,6 @@
 import styles from './page.module.css'
 import Header from '@/components/header'
-import { ProductBuilderState } from '@/components/pb-state'
+import { ProductBuilderState } from '@/providers/pb-state'
 import Main from '@/components/main'
 
 export default function Home() {

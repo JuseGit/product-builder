@@ -1,7 +1,7 @@
 'use client'
 
 import { FC, MouseEvent, ReactNode } from 'react'
-import { useProductBuilderContext } from './pb-context'
+import { useProductBuilderContext } from '../providers/pb-context'
 import Link from 'next/link'
 import styles from './header.module.css'
 

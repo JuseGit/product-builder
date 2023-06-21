@@ -5,7 +5,7 @@ import Model from './model'
 import styles from './models.module.css'
 import model01Pic from '../../public/img/product01_col01.jpg'
 import model02Pic from '../../public/img/product02_col01.jpg'
-import { useProductBuilderContext } from './pb-context'
+import { useProductBuilderContext } from '../providers/pb-context'
 
 const modelsData = [
   {
