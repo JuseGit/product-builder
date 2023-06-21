@@ -3,17 +3,17 @@ import { FC } from 'react'
 import styles from './models.module.css'
 import shared from './shared.module.css'
 
-type Model = {
+type ModelProps = {
   name: string
-  imgData: StaticImageData
+  imgURL: string
   price: number
 }
 
-const Model: FC<Model> = ({ name, imgData, price }) => {
+const Model: FC<ModelProps> = ({ name, imgURL, price }) => {
   return (
     <>
       <span className={styles.name}>{name}</span>
-      <Image src={imgData} alt={name} />
+      <Image src={imgURL} alt={name} width={500} height={500} />
       <span className={styles.price}>{`from \$${price.toLocaleString(
         'de-DE'
       )}`}</span>

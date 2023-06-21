@@ -4,6 +4,7 @@ import styles from './main.module.css'
 import Models from './models'
 import Colors from './colors'
 import Accessories from './accessories'
+import Summary from './summary'
 
 const Main: FC<{}> = () => {
   return (
@@ -19,7 +20,7 @@ const Main: FC<{}> = () => {
           <Accessories />
         </Step>
         <Step id="step-summary" index={3}>
-          <span>Summary Step</span>
+          <Summary />
         </Step>
       </ul>
     </main>

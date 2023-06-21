@@ -50,12 +50,12 @@ const accessoriesData: { [key: string]: Accessory[] } = {
 }
 
 const Accessories: FC<{}> = () => {
-  const { activeModel } = useProductBuilderContext()
+  const { model } = useProductBuilderContext()
 
   return (
     <ul className={`${styles['accessories-list']} ${shared['options-list']}`}>
-      {activeModel !== '' &&
-        accessoriesData[activeModel].map((accessory) => (
+      {model &&
+        accessoriesData[model.id].map((accessory) => (
           <AccessoryItem
             id={accessory.id}
             key={`key__${accessory.id}`}

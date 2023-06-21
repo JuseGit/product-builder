@@ -7,47 +7,32 @@ import styles from './header.module.css'
 import { useProductBuilderContext } from '../providers/pb-context'
 
 const Header: FC<{}> = () => {
-  const { activeModel } = useProductBuilderContext()
+  const { model } = useProductBuilderContext()
 
   return (
     <header className={styles['main-header']}>
       <h1>Product Builder</h1>
       <nav
-        className={`${activeModel === '' && styles.disabled} ${
+        className={`${!model && styles.disabled} ${
           styles['cd-builder-main-nav']
         }`}
       >
         <Tabs>
-          <Tab
-            to="#models"
-            id="tab-models"
-            index={0}
-            disabled={activeModel === ''}
-          >
+          <Tab to="#models" id="tab-models" index={0} disabled={!model}>
             Models
           </Tab>{' '}
-          <Tab
-            to="#colors"
-            id="tab-colors"
-            index={1}
-            disabled={activeModel === ''}
-          >
+          <Tab to="#colors" id="tab-colors" index={1} disabled={!model}>
             Colors
           </Tab>{' '}
           <Tab
             to="#accessories"
             id="tab-accessories"
             index={2}
-            disabled={activeModel === ''}
+            disabled={!model}
           >
             Accessories
           </Tab>{' '}
-          <Tab
-            to="#summary"
-            id="tab-summary"
-            index={3}
-            disabled={activeModel === ''}
-          >
+          <Tab to="#summary" id="tab-summary" index={3} disabled={!model}>
             Summary
           </Tab>
         </Tabs>

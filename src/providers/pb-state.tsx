@@ -4,6 +4,7 @@ import React, { ReactNode, useCallback, useReducer } from 'react'
 import { ProductBuilderContext } from './pb-context'
 import { Color } from '@/types/colors.types'
 import { Accessory } from '@/types/accessory.types'
+import { Model } from '@/types/model.type'
 
 export enum ProductBuilderActionType {
   SET_ACTIVE_TAB = 'set_active_tab',
@@ -17,7 +18,7 @@ export enum ProductBuilderActionType {
 // An interface for our state
 export interface ProductBuilderState {
   activeTab: number
-  activeModel: string
+  model: Model | undefined
   color: Color
   accessories: Accessory[]
   visited: { [key: number]: string }
@@ -30,7 +31,7 @@ type SetActiveTab = {
 
 type SetActiveModel = {
   type: ProductBuilderActionType.SET_ACTIVE_MODEL
-  payload: string
+  payload: Model
 }
 
 type SetColor = {
@@ -82,7 +83,8 @@ const productBuilderReducer = (
     case ProductBuilderActionType.SET_ACTIVE_MODEL:
       return {
         ...state,
-        activeModel: state.activeModel !== action.payload ? action.payload : '',
+        model:
+          state.model?.id !== action.payload.id ? action.payload : undefined,
       }
 
     case ProductBuilderActionType.SET_COLOR:
@@ -125,7 +127,7 @@ const productBuilderReducer = (
 export const ProductBuilderState = ({ children }: ProductBuilderProps) => {
   const initialState: ProductBuilderState = {
     activeTab: 0,
-    activeModel: '',
+    model: undefined,
     color: {
       id: 'col01',
       code: 'white',
@@ -145,7 +147,7 @@ export const ProductBuilderState = ({ children }: ProductBuilderProps) => {
     })
   }, [])
 
-  const setActiveModel = useCallback((model: string) => {
+  const setActiveModel = useCallback((model: Model) => {
     dispatch({
       type: ProductBuilderActionType.SET_ACTIVE_MODEL,
       payload: model,
@@ -181,7 +183,7 @@ export const ProductBuilderState = ({ children }: ProductBuilderProps) => {
     <ProductBuilderContext.Provider
       value={{
         activeTab: state.activeTab,
-        activeModel: state.activeModel,
+        model: state.model,
         color: state.color,
         accessories: state.accessories,
         visited: state.visited,

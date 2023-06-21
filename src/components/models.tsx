@@ -1,46 +1,55 @@
 'use client'
 
 import { FC } from 'react'
-import Model from './model'
+import { default as ModelItem } from './model'
 import styles from './models.module.css'
 import shared from './shared.module.css'
-import model01Pic from '../../public/img/product01_col01.jpg'
-import model02Pic from '../../public/img/product02_col01.jpg'
 import { useProductBuilderContext } from '../providers/pb-context'
+import { Model } from '@/types/model.type'
 
-const modelsData = [
+const modelsData: Model[] = [
   {
-    productId: 'product01',
+    id: 'product01',
     name: 'BMW i3',
-    imgURL: model01Pic,
+    description: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+    Reprehenderit saepe facilis hic, unde, numquam vel. Blanditiis sed
+    laboriosam ratione nulla atque molestias at explicabo aperiam
+    reprehenderit culpa nihil, quis totam cupiditate dolores in quisquam
+    magnam inventore nobis, rem adipisci eveniet illum.`,
     price: 42400,
   },
   {
-    productId: 'product02',
+    id: 'product02',
     name: 'BMW i8',
-    imgURL: model02Pic,
+    description: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+    Reprehenderit saepe facilis hic, unde, numquam vel. Blanditiis sed
+    laboriosam ratione nulla atque molestias at explicabo aperiam
+    reprehenderit culpa nihil, quis totam cupiditate dolores in quisquam
+    magnam inventore nobis, rem adipisci eveniet illum.`,
     price: 140700,
   },
 ]
 
 const Models: FC<{}> = () => {
-  const { activeModel, setActiveModel } = useProductBuilderContext()
+  const { model, setActiveModel } = useProductBuilderContext()
 
   return (
     <ul
       className={`${styles['models-list']} ${shared['options-list']} ${shared['cd-col-2']}`}
     >
-      {modelsData.map((model) => (
+      {modelsData.map((item) => (
         <li
           className={
-            activeModel === model.productId
-              ? `${shared.selected} ${shared.loaded}`
-              : ''
+            model?.id === item.id ? `${shared.selected} ${shared.loaded}` : ''
           }
-          key={model.productId}
-          onClick={() => setActiveModel(model.productId)}
+          key={item.id}
+          onClick={() => setActiveModel(item)}
         >
-          <Model name={model.name} imgData={model.imgURL} price={model.price} />
+          <ModelItem
+            name={item.name}
+            imgURL={`/img/${item.id}_col01.jpg`}
+            price={item.price}
+          />
         </li>
       ))}
     </ul>

@@ -45,23 +45,19 @@ const colorsData: { [key: string]: Color[] } = {
 }
 
 const Colors: FC<{}> = () => {
-  const { activeModel, color, setColor } = useProductBuilderContext()
+  const { model, color, setColor } = useProductBuilderContext()
 
   return (
     <>
       <ul className={styles['cd-product-previews']}>
-        {activeModel !== '' &&
-          colorsData[activeModel].map((cdata) => (
+        {model &&
+          colorsData[model.id].map((cdata) => (
             <li
               className={color.id === cdata.id ? `${styles.selected}` : ''}
               key={`${cdata.id}_preview`}
             >
               <Image
-                src={
-                  activeModel !== ''
-                    ? `/img/${activeModel}_${cdata.id}.jpg`
-                    : '/img/product01_col01.jpg'
-                }
+                src={`/img/${model.id}_${cdata.id}.jpg`}
                 alt="Product Preview"
                 width={500}
                 height={500}
@@ -71,8 +67,8 @@ const Colors: FC<{}> = () => {
           ))}
       </ul>
       <ul className={styles['cd-product-customizer']}>
-        {activeModel !== '' &&
-          colorsData[activeModel].map((cdata) => (
+        {model &&
+          colorsData[model.id].map((cdata) => (
             <li
               className={color.id === cdata.id ? `${styles.selected}` : ''}
               key={`${cdata.id}_customizer_item`}

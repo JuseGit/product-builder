@@ -2,16 +2,17 @@
 
 import { Accessory } from '@/types/accessory.types'
 import { Color } from '@/types/colors.types'
+import { Model } from '@/types/model.type'
 import { createContext, useContext } from 'react'
 
 interface ProductBuilderContextTypes {
   activeTab: number
-  activeModel: string
+  model: Model | undefined
   color: Color
   accessories: Accessory[]
   visited: { [key: number]: string }
   setActiveTab: (tab: number) => void
-  setActiveModel: (model: string) => void
+  setActiveModel: (model: Model) => void
   setColor: (color: Color) => void
   setAccessory: (accessory: Accessory) => void
   clearAccessory: (id: string) => void
