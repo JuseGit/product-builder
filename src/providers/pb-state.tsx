@@ -11,6 +11,9 @@ export enum ProductBuilderActionType {
   SET_ACTIVE_MODEL = 'set_active_model',
   SET_COLOR = 'set_color',
   SET_ACCESSORY = 'set_accessory',
+  SET_ALERT = 'set_alert',
+  ADD_TOTAL = 'add_total',
+  SUB_TOTAL = 'sub_total',
   CLEAR_ACCESSORY = 'clear_accessory',
   CLEAR_SELECTIONS = 'clear_sel',
 }
@@ -22,6 +25,8 @@ export interface ProductBuilderState {
   color: Color
   accessories: Accessory[]
   visited: { [key: number]: string }
+  showAlert: boolean
+  total: number
 }
 
 type SetActiveTab = {
@@ -31,7 +36,7 @@ type SetActiveTab = {
 
 type SetActiveModel = {
   type: ProductBuilderActionType.SET_ACTIVE_MODEL
-  payload: Model
+  payload: Model | undefined
 }
 
 type SetColor = {
@@ -42,6 +47,11 @@ type SetColor = {
 type SetAccessory = {
   type: ProductBuilderActionType.SET_ACCESSORY
   payload: Accessory
+}
+
+type SetAlert = {
+  type: ProductBuilderActionType.SET_ALERT
+  payload: boolean
 }
 
 type ClearAccessory = {
@@ -58,6 +68,7 @@ type ProductBuilderAction =
   | SetActiveModel
   | SetColor
   | SetAccessory
+  | SetAlert
   | ClearAccessory
   | ClearSelections
 
@@ -83,25 +94,38 @@ const productBuilderReducer = (
     case ProductBuilderActionType.SET_ACTIVE_MODEL:
       return {
         ...state,
-        model:
-          state.model?.id !== action.payload.id ? action.payload : undefined,
+        total: action.payload ? action.payload.price : 0,
+        model: action.payload,
       }
 
     case ProductBuilderActionType.SET_COLOR:
       return {
         ...state,
+        total: state.total - state.color.price + action.payload.price,
         color: action.payload,
       }
 
     case ProductBuilderActionType.SET_ACCESSORY:
       return {
         ...state,
+        total: state.total + action.payload.price,
         accessories: [...state.accessories, action.payload],
       }
 
-    case ProductBuilderActionType.CLEAR_ACCESSORY:
+    case ProductBuilderActionType.SET_ALERT:
       return {
         ...state,
+        showAlert: action.payload,
+      }
+
+    case ProductBuilderActionType.CLEAR_ACCESSORY:
+      const cleared = state.accessories.find(
+        (item) => item.id === action.payload
+      )
+
+      return {
+        ...state,
+        total: state.total - (cleared ? cleared.price : 0),
         accessories: state.accessories.filter(
           (item) => item.id !== action.payload
         ),
@@ -136,6 +160,8 @@ export const ProductBuilderState = ({ children }: ProductBuilderProps) => {
     },
     accessories: [],
     visited: {},
+    showAlert: false,
+    total: 0,
   }
 
   const [state, dispatch] = useReducer(productBuilderReducer, initialState)
@@ -147,16 +173,26 @@ export const ProductBuilderState = ({ children }: ProductBuilderProps) => {
     })
   }, [])
 
-  const setActiveModel = useCallback((model: Model) => {
-    dispatch({
-      type: ProductBuilderActionType.SET_ACTIVE_MODEL,
-      payload: model,
-    })
+  const setActiveModel = useCallback(
+    (model: Model) => {
+      if (!state.model || state.model.id !== model.id) {
+        dispatch({
+          type: ProductBuilderActionType.SET_ACTIVE_MODEL,
+          payload: model,
+        })
+      } else {
+        dispatch({
+          type: ProductBuilderActionType.SET_ACTIVE_MODEL,
+          payload: undefined,
+        })
+      }
 
-    dispatch({
-      type: ProductBuilderActionType.CLEAR_SELECTIONS,
-    })
-  }, [])
+      dispatch({
+        type: ProductBuilderActionType.CLEAR_SELECTIONS,
+      })
+    },
+    [state.model]
+  )
 
   const setColor = useCallback((color: Color) => {
     dispatch({
@@ -169,6 +205,13 @@ export const ProductBuilderState = ({ children }: ProductBuilderProps) => {
     dispatch({
       type: ProductBuilderActionType.SET_ACCESSORY,
       payload: accessory,
+    })
+  }, [])
+
+  const setAlert = useCallback((val: boolean) => {
+    dispatch({
+      type: ProductBuilderActionType.SET_ALERT,
+      payload: val,
     })
   }, [])
 
@@ -187,10 +230,13 @@ export const ProductBuilderState = ({ children }: ProductBuilderProps) => {
         color: state.color,
         accessories: state.accessories,
         visited: state.visited,
+        showAlert: state.showAlert,
+        total: state.total,
         setActiveTab,
         setActiveModel,
         setColor,
         setAccessory,
+        setAlert,
         clearAccessory,
       }}
     >

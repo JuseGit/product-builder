@@ -1,0 +1,103 @@
+.cd-builder-footer {
+  position: fixed;
+  z-index: 3;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 54px;
+  background: #fff;
+  box-shadow: 0 -2px 24px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s;
+}
+.cd-builder-footer.disabled {
+  transform: translateY(100%);
+}
+.cd-builder-footer .selected-product {
+  display: none;
+}
+.cd-builder-footer .alert {
+  display: none;
+}
+@media only screen and (min-width: 1024px) {
+  .cd-builder-footer {
+    height: 100px;
+    padding: 0 2em;
+    box-shadow: 0 0 39px rgba(0, 0, 0, 0.1);
+  }
+  .cd-builder-footer::after {
+    clear: both;
+    content: '';
+    display: block;
+  }
+  .cd-builder-footer.disabled {
+    -webkit-transform: translateY(0);
+    -ms-transform: translateY(0);
+    transform: translateY(0);
+  }
+  .cd-builder-footer .selected-product {
+    display: block;
+    position: absolute;
+    top: 50%;
+    bottom: auto;
+    transform: translateY(-50%);
+    left: 2em;
+    transition: transform 0.3s;
+  }
+  .cd-builder-footer .selected-product::after {
+    clear: both;
+    content: '';
+    display: block;
+  }
+  .cd-builder-footer .selected-product,
+  .cd-builder-footer img,
+  .cd-builder-footer .tot-price {
+    float: left;
+  }
+  .cd-builder-footer img {
+    width: 197px;
+    padding-right: 27px;
+    margin-right: 27px;
+    border-right: 1px solid #e1e1e1;
+    transition: opacity 0.2s;
+    height: auto;
+    object-fit: contain;
+  }
+  .cd-builder-footer .selected-product span {
+    display: block;
+    color: #5d7c89;
+  }
+  .cd-builder-footer .tot-price {
+    margin-top: 12px;
+  }
+  .cd-builder-footer .selected-product .total {
+    color: #24221f;
+    font-size: 3.2rem;
+    margin-top: 4px;
+  }
+  .cd-builder-footer.disabled .selected-product {
+    transform: translateX(-224px) translateY(-50%);
+  }
+  .cd-builder-footer.disabled .selected-product img {
+    opacity: 0;
+  }
+  .cd-builder-footer .alert {
+    display: block;
+    position: absolute;
+    top: 120%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    transition: top 0.2s;
+    background: #24221f;
+    color: #fff;
+    padding: 0.8em 1em;
+    border-radius: 4px;
+  }
+  .cd-builder-footer.disabled.show-alert .alert {
+    top: 50%;
+  }
+}
+@media only screen and (min-width: 1024px) and (min-height: 850px) {
+  .cd-builder-footer {
+    height: 120px;
+  }
+}

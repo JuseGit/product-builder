@@ -1,7 +1,8 @@
 import styles from './page.module.css'
 import Header from '@/components/header'
-import { ProductBuilderState } from '@/providers/pb-state'
 import Main from '@/components/main'
+import Footer from '@/components/footer'
+import { ProductBuilderState } from '@/providers/pb-state'
 
 export default function Home() {
   return (
@@ -9,6 +10,7 @@ export default function Home() {
       <ProductBuilderState>
         <Header />
         <Main />
+        <Footer />
       </ProductBuilderState>
     </div>
   )

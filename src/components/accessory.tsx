@@ -13,8 +13,7 @@ interface AccessoryProps extends ComponentPropsWithoutRef<'li'> {
 
 const AccessoryItem: FC<AccessoryProps> = ({ id, name, price, ...rest }) => {
   const [selected, setSelected] = useState(false)
-  const { activeModel, setAccessory, clearAccessory } =
-    useProductBuilderContext()
+  const { model, setAccessory, clearAccessory } = useProductBuilderContext()
 
   const handleClick = () => {
     if (!selected) {
@@ -28,7 +27,7 @@ const AccessoryItem: FC<AccessoryProps> = ({ id, name, price, ...rest }) => {
 
   useEffect(() => {
     setSelected(false)
-  }, [activeModel])
+  }, [model])
 
   return (
     <li

@@ -14,11 +14,12 @@ type TabType = {
 }
 
 const Tab: FC<TabType> = ({ children, id, index, to, disabled }) => {
-  const { activeTab, setActiveTab } = useProductBuilderContext()
+  const { activeTab, setActiveTab, setAlert } = useProductBuilderContext()
 
-  const handleClick = (event: MouseEvent<HTMLLIElement>) => {
+  const handleClick = (event: MouseEvent<HTMLAnchorElement>) => {
     if (disabled) {
       event.preventDefault()
+      setAlert(true)
       return
     }
 
@@ -26,12 +27,10 @@ const Tab: FC<TabType> = ({ children, id, index, to, disabled }) => {
   }
 
   return (
-    <li
-      className={activeTab !== index ? '' : styles['active']}
-      key={id}
-      onClick={handleClick}
-    >
-      <Link href={to}>{children}</Link>
+    <li className={activeTab !== index ? '' : styles['active']} key={id}>
+      <Link href={to} onClick={handleClick}>
+        {children}
+      </Link>
     </li>
   )
 }

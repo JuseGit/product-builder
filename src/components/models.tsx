@@ -1,6 +1,6 @@
 'use client'
 
-import { FC } from 'react'
+import { FC, MouseEventHandler } from 'react'
 import { default as ModelItem } from './model'
 import styles from './models.module.css'
 import shared from './shared.module.css'
@@ -31,7 +31,12 @@ const modelsData: Model[] = [
 ]
 
 const Models: FC<{}> = () => {
-  const { model, setActiveModel } = useProductBuilderContext()
+  const { model, setActiveModel, setAlert } = useProductBuilderContext()
+
+  const handleClick = (curModel: Model) => {
+    setActiveModel(curModel)
+    setAlert(false)
+  }
 
   return (
     <ul
@@ -43,7 +48,7 @@ const Models: FC<{}> = () => {
             model?.id === item.id ? `${shared.selected} ${shared.loaded}` : ''
           }
           key={item.id}
-          onClick={() => setActiveModel(item)}
+          onClick={() => handleClick(item)}
         >
           <ModelItem
             name={item.name}

@@ -11,10 +11,13 @@ interface ProductBuilderContextTypes {
   color: Color
   accessories: Accessory[]
   visited: { [key: number]: string }
+  showAlert: boolean
+  total: number
   setActiveTab: (tab: number) => void
   setActiveModel: (model: Model) => void
   setColor: (color: Color) => void
   setAccessory: (accessory: Accessory) => void
+  setAlert: (val: boolean) => void
   clearAccessory: (id: string) => void
 }
 

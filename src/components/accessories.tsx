@@ -12,7 +12,7 @@ const accessoriesData: { [key: string]: Accessory[] } = {
     {
       id: 'acc01',
       name: 'BMW Charging Station',
-      price: 1800,
+      price: 1080,
     },
     {
       id: 'acc02',
@@ -34,7 +34,7 @@ const accessoriesData: { [key: string]: Accessory[] } = {
     {
       id: 'acc02',
       name: 'BMW Charging Station',
-      price: 1800,
+      price: 1080,
     },
     {
       id: 'acc03',
