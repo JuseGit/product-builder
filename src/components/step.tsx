@@ -7,10 +7,11 @@ import styles from './step.module.css'
 type StepType = {
   children?: ReactNode
   id: string
+  title: string
   index: number
 }
 
-const Step: FC<StepType> = ({ children, id, index }) => {
+const Step: FC<StepType> = ({ children, title, id, index }) => {
   const { activeTab, visited } = useProductBuilderContext()
 
   const updateClassNameByTabID = () => {
@@ -32,7 +33,15 @@ const Step: FC<StepType> = ({ children, id, index }) => {
       className={`${styles['builder-step']} ${updateClassNameByTabID()}`}
       key={id}
     >
-      <section className={`${styles['cd-step-content']}`}>{children}</section>
+      <section className={`${styles['cd-step-content']}`}>
+        <header>
+          <h1>{title}</h1>
+          <span className={styles['steps-indicator']}>
+            Step <b>{index + 1}</b> of 4
+          </span>
+        </header>
+        {children}
+      </section>
     </li>
   )
 }
