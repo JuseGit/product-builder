@@ -1,11 +1,10 @@
 'use client'
 
-import { FC, MouseEvent, ReactNode } from 'react'
+import { ComponentPropsWithoutRef, FC, MouseEvent, ReactNode } from 'react'
 import { useProductBuilderContext } from '../providers/pb-context'
 import Link from 'next/link'
-import styles from './header.module.css'
 
-type TabType = {
+interface TabProps extends ComponentPropsWithoutRef<'li'> {
   children?: ReactNode
   id: string
   index: number
@@ -13,8 +12,8 @@ type TabType = {
   disabled: boolean
 }
 
-const Tab: FC<TabType> = ({ children, id, index, to, disabled }) => {
-  const { activeTab, setActiveTab, setAlert } = useProductBuilderContext()
+const Tab: FC<TabProps> = ({ children, id, index, to, disabled, ...rest }) => {
+  const { setActiveTab, setAlert } = useProductBuilderContext()
 
   const handleClick = (event: MouseEvent<HTMLAnchorElement>) => {
     if (disabled) {
@@ -27,7 +26,7 @@ const Tab: FC<TabType> = ({ children, id, index, to, disabled }) => {
   }
 
   return (
-    <li className={activeTab !== index ? '' : styles['active']} key={id}>
+    <li key={id} {...rest}>
       <Link href={to} onClick={handleClick}>
         {children}
       </Link>

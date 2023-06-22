@@ -4,15 +4,19 @@ import { useProductBuilderContext } from '@/providers/pb-context'
 import Image from 'next/image'
 import { FC } from 'react'
 import styles from './footer.module.css'
+import SecondaryNav from './secondaryNav'
 
 const Footer: FC<{}> = () => {
-  const { model, color, showAlert, total } = useProductBuilderContext()
+  const { model, color, activeTab, showAlert, total } =
+    useProductBuilderContext()
 
   return (
     <footer
       className={`${styles['cd-builder-footer']} ${
         showAlert ? styles['show-alert'] : ''
-      } ${!model ? styles.disabled : ''}`}
+      } ${!model ? styles.disabled : ''} ${
+        activeTab === 0 ? styles['step-1'] : ''
+      } `}
     >
       <div className={styles['selected-product']}>
         <Image
@@ -33,6 +37,7 @@ const Footer: FC<{}> = () => {
           )}`}</span>
         </div>
       </div>
+      <SecondaryNav />
       {showAlert && (
         <span className={styles.alert}>Please, select a model first!</span>
       )}

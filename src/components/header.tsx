@@ -7,7 +7,7 @@ import styles from './header.module.css'
 import { useProductBuilderContext } from '../providers/pb-context'
 
 const Header: FC<{}> = () => {
-  const { model } = useProductBuilderContext()
+  const { model, activeTab } = useProductBuilderContext()
 
   return (
     <header className={styles['main-header']}>
@@ -18,13 +18,26 @@ const Header: FC<{}> = () => {
         }`}
       >
         <Tabs>
-          <Tab to="#models" id="tab-models" index={0} disabled={!model}>
+          <Tab
+            className={activeTab !== 0 ? '' : styles['active']}
+            to="#models"
+            id="tab-models"
+            index={0}
+            disabled={!model}
+          >
             Models
           </Tab>{' '}
-          <Tab to="#colors" id="tab-colors" index={1} disabled={!model}>
+          <Tab
+            className={activeTab !== 1 ? '' : styles['active']}
+            to="#colors"
+            id="tab-colors"
+            index={1}
+            disabled={!model}
+          >
             Colors
           </Tab>{' '}
           <Tab
+            className={activeTab !== 2 ? '' : styles['active']}
             to="#accessories"
             id="tab-accessories"
             index={2}
@@ -32,7 +45,13 @@ const Header: FC<{}> = () => {
           >
             Accessories
           </Tab>{' '}
-          <Tab to="#summary" id="tab-summary" index={3} disabled={!model}>
+          <Tab
+            className={activeTab !== 3 ? '' : styles['active']}
+            to="#summary"
+            id="tab-summary"
+            index={3}
+            disabled={!model}
+          >
             Summary
           </Tab>
         </Tabs>
