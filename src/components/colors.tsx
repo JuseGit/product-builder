@@ -1,6 +1,6 @@
 'use client'
 
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 import { Color } from '@/types/colors.types'
 import styles from './colors.module.css'
 import { useProductBuilderContext } from '../providers/pb-context'
@@ -46,6 +46,16 @@ const colorsData: { [key: string]: Color[] } = {
 
 const Colors: FC<{}> = () => {
   const { model, color, setColor } = useProductBuilderContext()
+
+  /* After a model is selected, update default color properties */
+  useEffect(() => {
+    if (model) {
+      const defaultColor = colorsData[model.id].find(
+        (item) => item.id === 'col01'
+      )
+      if (defaultColor) setColor(defaultColor)
+    }
+  }, [model, setColor])
 
   return (
     <>

@@ -135,9 +135,9 @@ const productBuilderReducer = (
       return {
         ...state,
         color: {
-          id: 'col01',
-          code: 'white',
-          name: 'White',
+          id: 'initial',
+          name: 'initial',
+          code: 'initial',
           price: 0,
         },
         accessories: [],
@@ -153,9 +153,9 @@ export const ProductBuilderState = ({ children }: ProductBuilderProps) => {
     activeTab: 0,
     model: undefined,
     color: {
-      id: 'col01',
-      code: 'white',
-      name: 'White',
+      id: 'initial',
+      name: 'initial',
+      code: 'initial',
       price: 0,
     },
     accessories: [],
