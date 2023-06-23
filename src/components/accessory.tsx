@@ -11,6 +11,9 @@ interface AccessoryProps extends ComponentPropsWithoutRef<'li'> {
   price: number
 }
 
+/**
+ * AccessoryItem represents an item in @see Accessories section.
+ */
 const AccessoryItem: FC<AccessoryProps> = ({ id, name, price, ...rest }) => {
   const [selected, setSelected] = useState(false)
   const { model, setAccessory, clearAccessory } = useProductBuilderContext()

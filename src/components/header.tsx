@@ -6,6 +6,9 @@ import Tab from './tab'
 import styles from './header.module.css'
 import { useProductBuilderContext } from '../providers/pb-context'
 
+/**
+ * Header section, holds the main navigator for this app.
+ */
 const Header: FC<{}> = () => {
   const { model, activeTab } = useProductBuilderContext()
 

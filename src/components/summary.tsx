@@ -5,6 +5,9 @@ import styles from './summary.module.css'
 import Image from 'next/image'
 import { useProductBuilderContext } from '@/providers/pb-context'
 
+/**
+ * Content for summary build step. @see Step for more info on step implementation.
+ */
 const Summary: FC<{}> = () => {
   const { model, color, accessories } = useProductBuilderContext()
 

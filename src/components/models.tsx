@@ -1,6 +1,6 @@
 'use client'
 
-import { FC, MouseEventHandler } from 'react'
+import { FC } from 'react'
 import { default as ModelItem } from './model'
 import styles from './models.module.css'
 import shared from './shared.module.css'
@@ -30,6 +30,10 @@ const modelsData: Model[] = [
   },
 ]
 
+/**
+ * Content for models build step. @see Step for more info on step implementation.
+ * @see ModelItem for a description of a model item in this list.
+ */
 const Models: FC<{}> = () => {
   const { model, setActiveModel, setAlert } = useProductBuilderContext()
 

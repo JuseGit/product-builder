@@ -6,6 +6,9 @@ import { FC } from 'react'
 import styles from './footer.module.css'
 import SecondaryNav from './secondaryNav'
 
+/**
+ * Footer section, holds the secondary navigator for this app and the total price of selected items.
+ */
 const Footer: FC<{}> = () => {
   const { model, color, activeTab, showAlert, total } =
     useProductBuilderContext()

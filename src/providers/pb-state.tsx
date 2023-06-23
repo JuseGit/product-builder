@@ -148,6 +148,9 @@ const productBuilderReducer = (
   }
 }
 
+/*
+ * This component holds the builder state and shares it beetwen components by context provider.
+ */
 export const ProductBuilderState = ({ children }: ProductBuilderProps) => {
   const initialState: ProductBuilderState = {
     activeTab: 0,

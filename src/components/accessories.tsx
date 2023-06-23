@@ -49,6 +49,10 @@ const accessoriesData: { [key: string]: Accessory[] } = {
   ],
 }
 
+/**
+ * Accessories is a list of accessories provided for each products in the build app.
+ * @see AccessoryItem for a description of each list item.
+ */
 const Accessories: FC<{}> = () => {
   const { model } = useProductBuilderContext()
 

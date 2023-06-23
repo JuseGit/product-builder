@@ -6,6 +6,9 @@ import Colors from './colors'
 import Accessories from './accessories'
 import Summary from './summary'
 
+/**
+ * Main content, holds a group of build steps.
+ */
 const Main: FC<{}> = () => {
   return (
     <main className={styles['cd-builder-steps']}>

@@ -25,6 +25,10 @@ const ProductBuilderContext = createContext<ProductBuilderContextTypes | null>(
   null
 )
 
+/**
+ * Custom context provider hook. Makes sure to throw an error if not used insede the  provider.
+ * @see ProductBuilderState for more info on state implementation.
+ */
 const useProductBuilderContext = () => {
   const context = useContext(ProductBuilderContext)
 

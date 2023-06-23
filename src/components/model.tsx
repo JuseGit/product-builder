@@ -9,6 +9,9 @@ type ModelProps = {
   price: number
 }
 
+/**
+ * Model represents an item in Models list section. @see Models for more info
+ */
 const Model: FC<ModelProps> = ({ name, imgURL, price }) => {
   return (
     <>

@@ -44,6 +44,9 @@ const colorsData: { [key: string]: Color[] } = {
   ],
 }
 
+/**
+ * Colors shows a preview of a product providing a color customizer.
+ */
 const Colors: FC<{}> = () => {
   const { model, color, setColor } = useProductBuilderContext()
 

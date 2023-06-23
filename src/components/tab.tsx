@@ -12,6 +12,9 @@ interface TabProps extends ComponentPropsWithoutRef<'li'> {
   disabled: boolean
 }
 
+/**
+ * A Tab represents an item inside a navigator. Used within @see Tabs
+ */
 const Tab: FC<TabProps> = ({ children, id, index, to, disabled, ...rest }) => {
   const { setActiveTab, setAlert } = useProductBuilderContext()
 
