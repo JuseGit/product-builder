@@ -30,7 +30,7 @@ const Tab: FC<TabProps> = ({ children, id, index, to, disabled, ...rest }) => {
 
   return (
     <li key={id} {...rest}>
-      <Link href={to} onClick={handleClick}>
+      <Link href={{ pathname: '/', hash: to }} onClick={handleClick}>
         {children}
       </Link>
     </li>
