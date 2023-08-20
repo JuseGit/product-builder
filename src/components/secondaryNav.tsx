@@ -16,8 +16,8 @@ const SecondaryNav: FC<{}> = () => {
 
     // If this was the previous Tab content, assign the class movement based on stored state
     if (index in visited) {
-      if (styles[visited[index]] === 'move-left ') {
-        name += ` ${styles.visited}`
+      if (visited[index] === 'move-left') {
+        name = `${styles['visible']} ${styles.visited}`
       }
     }
 

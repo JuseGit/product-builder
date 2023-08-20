@@ -86,8 +86,8 @@ const productBuilderReducer = (
         ...state,
         visited:
           state.activeTab < action.payload
-            ? { [state.activeTab]: 'move-left' }
-            : { [action.payload]: 'back' },
+            ? { ...state.visited, [state.activeTab]: 'move-left' }
+            : { ...state.visited, [action.payload]: 'back' },
         activeTab: action.payload,
       }
 
